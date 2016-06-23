@@ -1,1 +1,1 @@
-web: vendor/bin/avaliacao-praxis public
+web: vendor/bin/heroku-php-apache2 public

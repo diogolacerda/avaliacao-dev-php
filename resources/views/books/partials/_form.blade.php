@@ -16,7 +16,7 @@
 
   <div class="form-group">
     {!! Form::label('authors[]', 'Autores:') !!}
-    {{ Form::select('author[]', $authors, $authors_selected, ['multiple' => 'multiple', 'class' => 'form-control']) }}
+    {{ Form::select('author[]', $authors, $authors_selected, ['multiple' => 'multiple', 'id' => 'authors', 'class' => 'form-control']) }}
   </div>
 
   <div class="form-group">

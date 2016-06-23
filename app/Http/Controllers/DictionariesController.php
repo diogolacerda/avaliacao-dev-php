@@ -54,7 +54,6 @@ class DictionariesController extends Controller
         $this->validate($request, $this->rules);
         $input = Input::all();
 
-        die(print_r($input));
         // Dictionary image
         if ($request->hasFile('image')) {
             $file = Input::file('image');

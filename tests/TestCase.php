@@ -22,4 +22,15 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    public function prepareForTests(){
+        Config::set('database.default', 'sqlite');
+        Artisan::call('migrate:refresh');
+    }
+
+    public function setUp(){
+        parent::setUp();
+
+        $this->prepareForTests();
+    }
 }

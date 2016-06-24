@@ -71,6 +71,7 @@ class MaterialsController extends Controller
                 break;
             case '2':
                 $rules = array_merge($rules, $this->dictionary_rules);
+                $request['number_of_pages'] = 0;
                 break;
         }
 
@@ -143,6 +144,7 @@ class MaterialsController extends Controller
                 break;
             case '2':
                 $rules = array_merge($rules, $this->dictionary_rules);
+                $request['number_of_pages'] = 0;
                 break;
         }
 

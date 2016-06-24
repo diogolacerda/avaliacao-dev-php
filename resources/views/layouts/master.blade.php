@@ -55,6 +55,7 @@
 
 
     @yield('scripts')
+    <script type="text/javascript" src="{!! asset('js/material_form.js') !!}"></script>
 
    </body>
 </html>

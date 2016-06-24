@@ -55,6 +55,7 @@
 
 
     <?php echo $__env->yieldContent('scripts'); ?>
+    <script type="text/javascript" src="<?php echo asset('js/material_form.js'); ?>"></script>
 
    </body>
 </html>

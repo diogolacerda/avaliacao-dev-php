@@ -1,3 +1,6 @@
+
+
+
 <div class="col-xs-6">
 
   <div class="form-group">
@@ -25,29 +28,33 @@
     {{ Form::select('author[]', $authors, $authors_selected, ['multiple' => 'multiple', 'id' => 'authors', 'class' => 'form-control']) }}
   </div>
 
-  <div class="form-group">
-    {!! Form::label('isbn', 'ISBN:') !!}
-    {!! Form::text('isbn', null, array('class' => 'form-control')) !!}
+  <div id="book-div">
+    <div class="form-group">
+      {!! Form::label('isbn', 'ISBN:') !!}
+      {!! Form::text('isbn', null, array('class' => 'form-control')) !!}
+    </div>
+
+    <div class="form-group">
+      {!! Form::label('number_of_pages', 'Número de Páginas:') !!}
+      {!! Form::text('number_of_pages', null, array('class' => 'form-control')) !!}
+    </div>
+
+    <div class="form-group">
+      {!! Form::label('resume', 'Resumo:') !!}
+      {!! Form::text('resume', null, array('class' => 'form-control')) !!}
+    </div>
   </div>
 
-  <div class="form-group">
-    {!! Form::label('number_of_pages', 'Número de Páginas:') !!}
-    {!! Form::text('number_of_pages', null, array('class' => 'form-control')) !!}
-  </div>
+  <div id="dictionary-div" style="display: none;">
+    <div class="form-group">
+      {!! Form::label('edition', 'Edição:') !!}
+      {!! Form::text('edition', null, array('class' => 'form-control')) !!}
+    </div>
 
-  <div class="form-group">
-    {!! Form::label('resume', 'Resumo:') !!}
-    {!! Form::text('resume', null, array('class' => 'form-control')) !!}
-  </div>
-
-  <div class="form-group">
-    {!! Form::label('edition', 'Edição:') !!}
-    {!! Form::text('edition', null, array('class' => 'form-control')) !!}
-  </div>
-
-  <div class="form-group">
-    {!! Form::label('classification', 'Classificação:') !!}
-    {!! Form::text('classification', null, array('class' => 'form-control')) !!}
+    <div class="form-group">
+      {!! Form::label('classification', 'Classificação:') !!}
+      {!! Form::text('classification', null, array('class' => 'form-control')) !!}
+    </div>
   </div>
 
   <div class="form-group">

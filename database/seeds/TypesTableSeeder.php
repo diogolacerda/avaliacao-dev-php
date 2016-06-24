@@ -11,7 +11,7 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Types')->insert(['name' => "Livro"]);
-        DB::table('Types')->insert(['name' => "Dicionário"]);
+        DB::table('types')->insert(['name' => "Livro"]);
+        DB::table('types')->insert(['name' => "Dicionário"]);
     }
 }

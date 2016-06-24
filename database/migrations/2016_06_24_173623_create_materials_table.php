@@ -19,7 +19,7 @@ class CreateMaterialsTable extends Migration
             $table->string('subtitle')->nullable();
             $table->string('image')->nullable();
             $table->string('isbn')->nullable();
-            $table->integer('number_of_pages')->nullable();
+            $table->integer('number_of_pages')->default(0);
             $table->text('resume')->nullable();
             $table->string('edition')->nullable();
             $table->text('classification')->nullable();

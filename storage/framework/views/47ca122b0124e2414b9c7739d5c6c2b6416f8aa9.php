@@ -6,9 +6,7 @@
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-
       <?php echo $__env->yieldContent('css'); ?>
-
 
   </head>
   <body style="padding-top: 60px;">
@@ -26,10 +24,7 @@
                 <a href="<?php echo e(route('authors.index')); ?>">Autores</a>
               </li>
               <li>
-                <a href="<?php echo e(route('books.index')); ?>">Livros</a>
-              </li>
-              <li>
-                <a href="<?php echo e(route('dictionaries.index')); ?>">Dicionários</a>
+                <a href="<?php echo e(route('materials.index')); ?>">Materiais</a>
               </li>
             </ul>
           </div>

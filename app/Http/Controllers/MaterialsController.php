@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Book;
+use App\Material;
 use App\Author;
+use App\Type;
 use Input;
 use Redirect;
 use Carbon\Carbon;
@@ -11,14 +12,23 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-class BooksController extends Controller
+class MaterialsController extends Controller
 {
-    protected $rules = [
+    protected $general_rules = [
+        'type_id' => ['required'],
         'title' => ['required'],
+        'author' => ['required', 'array'],
+        'image' => ['mimes:png,jpeg,jpg']
+    ];
+
+    protected $book_rules = [
         'isbn' => ['required'],
         'number_of_pages' => ['required', 'numeric', 'min:1'],
-        'image' => ['mimes:png,jpeg,jpg'],
         'author' => ['required', 'array']
+    ];
+
+    protected $dictionary_rules = [
+        'edition' => ['required']
     ];
 
     /**
@@ -28,8 +38,8 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        return view('books.index', compact('books'));
+        $materials = Material::all();
+        return view('materials.index', compact('materials'));
     }
 
     /**
@@ -39,9 +49,10 @@ class BooksController extends Controller
      */
     public function create()
     {
+        $types = Type::lists('name', 'id');
         $authors = Author::lists('name', 'id');
         $authors_selected = null;
-        return view('books.create', array('authors' => $authors, 'authors_selected' => null));
+        return view('materials.create', array('types' => $types, 'authors' => $authors, 'authors_selected' => null));
     }
 
     /**
@@ -52,10 +63,21 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->rules);
+        $rules = $this->general_rules;
+
+        switch ($request['type_id']) {
+            case '1':
+                $rules = array_merge($rules, $this->book_rules);
+                break;
+            case '2':
+                $rules = array_merge($rules, $this->dictionary_rules);
+                break;
+        }
+
+        $this->validate($request, $rules);
         $input = Input::all();
 
-        // Book image
+        // Material image
         if ($request->hasFile('image')) {
             $file = Input::file('image');
             //getting timestamp
@@ -68,12 +90,12 @@ class BooksController extends Controller
         }
 
 
-        $book = Book::create($input);
+        $material = Material::create($input);
         // Authors relation
-        $book->authors()->sync($input['author']);
+        $material->authors()->sync($input['author']);
 
 
-        return Redirect::route('books.index')->with('message', 'Livro criado');
+        return Redirect::route('materials.index')->with('message', 'Material criado');
     }
 
     /**
@@ -84,8 +106,8 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        $book = Book::find($id);
-        return view('books.show', array('book' => $book));
+        $material = Material::find($id);
+        return view('materials.show', array('material' => $material));
     }
 
     /**
@@ -96,11 +118,12 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        $book = Book::find($id);
+        $material = Material::find($id);
 
         $authors = Author::lists('name', 'id');
-        $authors_selected = $book->authors->lists('id')->all();
-        return view('books.edit', array('book' => $book, 'authors' => $authors, 'authors_selected' => $authors_selected));
+        $types = Type::lists('name', 'id');
+        $authors_selected = $material->authors->lists('id')->all();
+        return view('materials.edit', array('material' => $material, 'types' => $types, 'authors' => $authors, 'authors_selected' => $authors_selected));
     }
 
     /**
@@ -112,12 +135,24 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, $this->rules);
+        $rules = $this->general_rules;
+
+        switch ($request['type_id']) {
+            case '1':
+                $rules = array_merge($rules, $this->book_rules);
+                break;
+            case '2':
+                $rules = array_merge($rules, $this->dictionary_rules);
+                break;
+        }
+
+        $this->validate($request, $rules);
+
         $input = array_except(Input::all(), '_method');
-        $book = Book::find($id);
+        $material = Material::find($id);
 
 
-        // Book image
+        // Material image
         if ($request->hasFile('image')) {
             $file = Input::file('image');
             //getting timestamp
@@ -128,15 +163,15 @@ class BooksController extends Controller
             $file->move(public_path().'/images/', $name);
             $input['image'] = $name;
         } else {
-            $input['image'] = $book->image;
+            $input['image'] = $material->image;
         }
 
         // Authors relation
-        $book->authors()->sync($input['author']);
+        $material->authors()->sync($input['author']);
 
-        $book->update($input);
+        $material->update($input);
 
-        return Redirect::route('books.show', $book->id)->with('message', 'Livro atualizado');
+        return Redirect::route('materials.show', $material->id)->with('message', 'Material atualizado');
     }
 
     /**
@@ -147,9 +182,9 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::find($id);
-        $book->delete();
+        $material = Material::find($id);
+        $material->delete();
 
-        return Redirect::route('books.index')->with('message', 'Livro removido');
+        return Redirect::route('materials.index')->with('message', 'Material removido');
     }
 }

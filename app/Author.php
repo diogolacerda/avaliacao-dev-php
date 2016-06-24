@@ -9,11 +9,9 @@ class Author extends Model
 
   protected $fillable = array('name', 'notation');
 
-  public function books() {
-    return $this->hasMany('Book');
+  public function materials() {
+    return $this->hasMany('Material');
   }
 
-  public function dictionaries() {
-    return $this->hasMany('Dictionary');
-  }
+
 }

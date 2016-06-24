@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorBookPivotTable extends Migration
+class CreateAuthorMaterialPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,12 @@ class CreateAuthorBookPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('author_book', function (Blueprint $table) {
+        Schema::create('author_material', function (Blueprint $table) {
             $table->integer('author_id')->unsigned()->index();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
-            $table->integer('book_id')->unsigned()->index();
-            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
-            $table->primary(['author_id', 'book_id']);
+            $table->integer('material_id')->unsigned()->index();
+            $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
+            $table->primary(['author_id', 'material_id']);
         });
     }
 
@@ -28,6 +28,6 @@ class CreateAuthorBookPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('author_book');
+        Schema::drop('author_material');
     }
 }

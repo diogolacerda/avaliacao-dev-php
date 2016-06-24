@@ -15,6 +15,5 @@ Route::get('/', 'AuthorsController@index');
 
 
 Route::resource('authors', 'AuthorsController');
-Route::resource('books', 'BooksController');
-Route::resource('dictionaries', 'DictionariesController');
+Route::resource('materials', 'MaterialsController');
 

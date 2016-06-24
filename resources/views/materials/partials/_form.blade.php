@@ -1,4 +1,10 @@
 <div class="col-xs-6">
+
+  <div class="form-group">
+    {!! Form::label('type_id', 'Tipo:') !!}
+    {{ Form::select('type_id', $types, null, ['class' => 'form-control']) }}
+  </div>
+
   <div class="form-group">
     {!! Form::label('title', 'Título:') !!}
     {!! Form::text('title', null, array('class' => 'form-control')) !!}
@@ -32,6 +38,16 @@
   <div class="form-group">
     {!! Form::label('resume', 'Resumo:') !!}
     {!! Form::text('resume', null, array('class' => 'form-control')) !!}
+  </div>
+
+  <div class="form-group">
+    {!! Form::label('edition', 'Edição:') !!}
+    {!! Form::text('edition', null, array('class' => 'form-control')) !!}
+  </div>
+
+  <div class="form-group">
+    {!! Form::label('classification', 'Classificação:') !!}
+    {!! Form::text('classification', null, array('class' => 'form-control')) !!}
   </div>
 
   <div class="form-group">

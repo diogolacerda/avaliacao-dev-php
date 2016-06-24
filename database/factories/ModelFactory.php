@@ -27,24 +27,23 @@ $factory->define(App\Author::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Book::class, function (Faker\Generator $faker) {
+$factory->define(App\Type::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->jobTitle
+    ];
+});
+
+$factory->define(App\Material::class, function (Faker\Generator $faker) {
+    $type_id = factory(App\Type::class)->create()->id;
     return [
         'image' => $faker->image,
+        'type_id' => $type_id,
         'title' => $faker->company,
         'subtitle' => $faker->companySuffix,
         'isbn' => $faker->isbn13,
         'number_of_pages' => $faker->randomDigitNotNull,
-        'resume' => $faker->text
-    ];
-});
-
-$factory->define(App\Dictionary::class, function (Faker\Generator $faker) {
-    return [
-        'title' => $faker->company,
-        'subtitle' => $faker->companySuffix,
+        'resume' => $faker->text,
         'edition' => $faker->word,
         'classification' => $faker->text
     ];
 });
-
-

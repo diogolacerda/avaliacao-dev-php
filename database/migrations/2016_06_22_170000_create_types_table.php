@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDictionariesTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,9 @@ class CreateDictionariesTable extends Migration
      */
     public function up()
     {
-        Schema::create('dictionaries', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('subtitle');
-            $table->string('image')->nullable();
-            $table->string('edition');
-            $table->text('classification');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ class CreateDictionariesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('dictionaries');
+        Schema::drop('types');
     }
 }

@@ -111,6 +111,7 @@ return [
 
     'attributes'           => [
         'name' => 'Nome',
+        'type_id' => 'Tipo',
         'title' => 'Título',
         'number_of_pages' => 'Número de Páginas',
         'author' => 'Autor',

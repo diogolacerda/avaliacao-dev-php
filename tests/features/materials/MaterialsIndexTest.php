@@ -16,7 +16,12 @@ class MaterialsIndexTest extends TestCase
       ->see($material->type->name)
       ->see($material->title)
       ->see($material->subtitle)
-      ->see($material->authors->implode('name', ', '));
+      ->see($material->authors->implode('name', ', '))
+      ->see($material->isbn)
+      ->see($material->number_of_pages)
+      ->see($material->resume)
+      ->see($material->edition)
+      ->see($material->classification);
   }
 
   public function testRemovingMaterial() {

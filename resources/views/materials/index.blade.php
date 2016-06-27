@@ -29,6 +29,11 @@
               <th>Título</th>
               <th>Subtítulo</th>
               <th>Autores</th>
+              <th>ISBN</th>
+              <th>Número de Páginas</th>
+              <th>Resumo</th>
+              <th>Edição</th>
+              <th>Classificação</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -44,6 +49,11 @@
                 <td>{{ $material->title }}</td>
                 <td>{{ $material->subtitle }}</td>
                 <td>{{ $material->authors->implode('name', ', ') }}</td>
+                <td>{{ $material->isbn }}</td>
+                <td>{{ $material->number_of_pages }}</td>
+                <td>{{ $material->resume }}</td>
+                <td>{{ $material->edition }}</td>
+                <td>{{ $material->classification }}</td>
                 <td>
                   {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('materials.destroy', $material))) !!}
                       {!! link_to_route('materials.show', 'Visualizar', array($material->id), array('class' => 'btn btn-warning')) !!}
